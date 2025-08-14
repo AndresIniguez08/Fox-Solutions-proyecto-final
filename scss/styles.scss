@@ -1,0 +1,425 @@
+// ==========================================
+// FOX SOLUTIONS - SASS BÁSICO
+// Relacionado directamente con tu HTML
+// ==========================================
+
+// Variables básicas
+$primary-color: #ff6b35;
+$secondary-color: #f7931e;
+$dark-color: #1a1a2e;
+$light-color: whitesmoke;
+$whatsapp-color: #25d366;
+
+// Espaciados
+$spacing-sm: 10px;
+$spacing-md: 20px;
+$spacing-lg: 30px;
+
+// Breakpoints
+$tablet: 768px;
+$mobile: 480px;
+
+// Mixins básicos
+@mixin video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+@mixin hover-effect {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@mixin responsive-tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin responsive-mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+// Placeholders
+%center-text {
+  text-align: center;
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Reset básico
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Body
+#body {
+  font-family: "Poppins", sans-serif;
+  color: $light-color;
+  @extend %center-text;
+}
+
+// Header
+header {
+  min-height: 100vh;
+  @extend %flex-center;
+  flex-direction: column;
+  position: relative;
+  padding: $spacing-md;
+
+  // Video background
+  .video-background {
+    @include video-background;
+  }
+
+  // Logo
+  img {
+    max-width: 250px;
+    height: auto;
+    margin-bottom: $spacing-lg;
+    filter: drop-shadow(0 5px 15px rgba($primary-color, 0.3));
+    @include hover-effect;
+
+    @include responsive-tablet {
+      max-width: 200px;
+    }
+
+    @include responsive-mobile {
+      max-width: 150px;
+    }
+  }
+
+  // Título principal
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    max-width: 800px;
+
+    @include responsive-mobile {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// Main content
+main {
+  position: relative;
+  z-index: 1;
+
+  // Navbar
+  .navbar {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: $spacing-sm 0;
+
+    .container-fluid {
+      position: relative;
+    }
+
+    // Brand
+    #nav-brand {
+      color: $light-color !important;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $primary-color !important;
+        transform: scale(1.05);
+      }
+    }
+
+    // Toggler
+    .navbar-toggler {
+      border: none;
+      padding: 5px;
+
+      .icono-nav {
+        width: 25px;
+        height: 25px;
+        filter: invert(1);
+      }
+    }
+
+    // Navigation links
+    #nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+      padding-top: $spacing-md;
+
+      .nav-link {
+        color: $light-color !important;
+        text-decoration: none;
+        padding: 12px $spacing-md;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        font-weight: 500;
+
+        &:hover {
+          background: linear-gradient(45deg, $primary-color, $secondary-color);
+          color: white !important;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+// Subtítulos
+.subtitulos {
+  @extend %center-text;
+  margin: $spacing-lg 0;
+
+  h2 {
+    color: $light-color;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: $spacing-md;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid transparent;
+    border-radius: 25px;
+    display: inline-block;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 25px;
+      background: linear-gradient(45deg, $primary-color, $secondary-color);
+      z-index: -1;
+    }
+
+    @include responsive-tablet {
+      font-size: 1.5rem;
+      padding: 15px $spacing-md;
+    }
+  }
+
+  &:hover h2 {
+    transform: translateY(-3px);
+  }
+}
+
+// Servicios section
+#servicios {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: $spacing-md;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  // Carousel images
+  .servicio {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.5s ease;
+
+    @include responsive-tablet {
+      height: 300px;
+    }
+
+    @include responsive-mobile {
+      height: 250px;
+    }
+  }
+
+  // Carousel items
+  .carousel-item {
+    position: relative;
+
+    &:hover .servicio {
+      transform: scale(1.03);
+    }
+  }
+
+  // Carousel captions
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: $spacing-md;
+    bottom: $spacing-md;
+    left: $spacing-md;
+    right: $spacing-md;
+
+    h5 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: white;
+
+      &.black {
+        color: white; // Override para mejor legibilidad
+      }
+
+      @include responsive-mobile {
+        font-size: 1.1rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+
+      &.black {
+        color: rgba(255, 255, 255, 0.9); // Override para mejor legibilidad
+      }
+
+      @include responsive-mobile {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  // Carousel indicators
+  .carousel-indicators {
+    button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: none;
+      margin: 0 4px;
+      transition: all 0.3s ease;
+
+      &.active {
+        background: $primary-color;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  // Carousel controls
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &:hover {
+      background: linear-gradient(45deg, $primary-color, $secondary-color);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      filter: brightness(0) invert(1);
+    }
+  }
+}
+
+// WhatsApp button
+.button {
+  position: fixed;
+  bottom: $spacing-md;
+  right: $spacing-md;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: linear-gradient(45deg, $whatsapp-color, #128c7e);
+  padding: 15px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 5px 15px rgba($whatsapp-color, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    color: white;
+    box-shadow: 0 8px 25px rgba($whatsapp-color, 0.5);
+  }
+
+  .whatsapp-icon {
+    width: 40px;
+    height: auto;
+
+    @include responsive-mobile {
+      width: 35px;
+    }
+  }
+}
+
+// Footer
+footer {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: $spacing-lg 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  .container {
+    @extend %center-text;
+
+    p {
+      margin: 0;
+      color: rgba($light-color, 0.8);
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Responsive adjustments
+@include responsive-tablet {
+  header {
+    min-height: 80vh;
+    padding: $spacing-md;
+  }
+
+  #servicios {
+    padding: 15px;
+  }
+}
+
+@include responsive-mobile {
+  header {
+    min-height: 70vh;
+    padding: $spacing-sm;
+  }
+
+  .subtitulos h2 {
+    font-size: 1.3rem;
+  }
+
+  #servicios {
+    padding: $spacing-sm;
+  }
+}
