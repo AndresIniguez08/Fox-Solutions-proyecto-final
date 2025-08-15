@@ -10,12 +10,12 @@ $spacing-sm: 10px;
 $spacing-md: 20px;
 $spacing-lg: 30px;
 
-// Breakpoints actualizados
+// Breakpoints
 $tablet: 768px;
-$mobile: 528px; // Cambiado de 480px a 528px según tu observación
-$mobile-xs: 400px; // Nuevo breakpoint para pantallas muy pequeñas
+$mobile: 528px;
+$mobile-xs: 400px;
 
-// mixins
+// mixin
 
 @mixin mobile-responsive {
   @media (max-width: $mobile) {
@@ -47,7 +47,7 @@ $mobile-xs: 400px; // Nuevo breakpoint para pantallas muy pequeñas
   }
 }
 
-//mixin para que no colapse el contenido en pantallas pequeñas
+// mixin para que no colapse las cards
 @mixin horizontal-row-layout {
   display: flex !important;
   flex-direction: row !important;
@@ -304,7 +304,7 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
-  // Carousel images
+  // Carousel imagenes
   .servicio {
     width: 100%;
     height: 400px;
@@ -322,7 +322,7 @@ main {
     }
   }
 
-  // Carousel captions
+  // Carousel caps
   .carousel-caption {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
@@ -354,7 +354,7 @@ main {
     }
   }
 
-  // Carousel indicators
+  // Carousel indicadores
   .carousel-indicators {
     button {
       width: 12px;
@@ -372,7 +372,7 @@ main {
     }
   }
 
-  // Carousel controls
+  // Carousel controles
   .carousel-control-prev,
   .carousel-control-next {
     width: 50px;
@@ -692,7 +692,7 @@ footer {
     }
   }
 
-  // Sección de imagen como logo-cliente
+  // Sección de imagen
   .imagen {
     flex: 1;
     min-width: 300px;
@@ -717,7 +717,7 @@ footer {
       filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3)) brightness(0.9)
         contrast(1.1);
 
-      // Efecto de brillo parecido a logo-cliente
+      // Efecto de brillo tipo logo-cliente
       &::before {
         content: "";
         position: absolute;
@@ -1058,7 +1058,7 @@ footer {
   }
 }
 
-// Aplicar estilos a las columnas de Bootstrap existentes
+// Aplico estilos a las columnas de Bootstrap existentes
 .container .row .col {
   padding: 0 15px;
 
