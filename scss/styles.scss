@@ -49,7 +49,206 @@ $mobile: 480px;
     @content;
   }
 }
+.logo-cliente {
+  // Contenedor base con glassmorphism
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: $spacing-md;
+  position: relative;
+  overflow: hidden;
+  max-width: 180px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
+  // Efecto de brillo sutil
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    transform: rotate(45deg) translate(-100%, -100%);
+    transition: transform 0.6s ease;
+  }
+
+  // Estados de hover
+  &:hover {
+    transform: translateY(-8px) scale(1.08);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba($primary-color, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba($primary-color, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+    &::before {
+      transform: rotate(45deg) translate(100%, 100%);
+    }
+
+    // Efecto en la imagen interna
+    img {
+      transform: scale(1.1);
+      filter: drop-shadow(0 10px 30px rgba($primary-color, 0.3)) brightness(1.1)
+        contrast(1.1);
+    }
+  }
+
+  // Imagen dentro del logo-cliente
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 140px;
+    object-fit: contain;
+    transition: all 0.4s ease;
+    border-radius: 10px;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2)) brightness(0.95);
+  }
+
+  // Variantes por tipo de logo
+  &.logo-tech {
+    border-color: rgba(#00d4ff, 0.3);
+
+    &:hover {
+      border-color: rgba(#00d4ff, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(#00d4ff, 0.3);
+    }
+  }
+
+  &.logo-food {
+    border-color: rgba(#ff4757, 0.3);
+
+    &:hover {
+      border-color: rgba(#ff4757, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(#ff4757, 0.3);
+    }
+  }
+
+  &.logo-fashion {
+    border-color: rgba(#5f27cd, 0.3);
+
+    &:hover {
+      border-color: rgba(#5f27cd, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(#5f27cd, 0.3);
+    }
+  }
+
+  &.logo-social {
+    border-color: rgba(#0984e3, 0.3);
+
+    &:hover {
+      border-color: rgba(#0984e3, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(#0984e3, 0.3);
+    }
+  }
+
+  // Estados activos y focus
+  &:active {
+    transform: translateY(-4px) scale(1.04);
+    transition: all 0.1s ease;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: rgba($primary-color, 0.8);
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.2),
+      0 15px 35px rgba(0, 0, 0, 0.3);
+  }
+
+  // Responsive para logo-cliente
+  @include responsive-tablet {
+    max-width: 140px;
+    min-height: 100px;
+    padding: $spacing-sm;
+
+    img {
+      max-width: 110px;
+    }
+  }
+
+  @include responsive-mobile {
+    max-width: 120px;
+    min-height: 80px;
+    padding: $spacing-sm;
+
+    img {
+      max-width: 90px;
+    }
+
+    &:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+  }
+}
+
+// Clase especial para logos destacados
+.logo-cliente.destacado {
+  animation: logoGlow 3s ease-in-out infinite;
+  border-color: rgba($primary-color, 0.4);
+}
+
+// Animación de pulso para logos destacados
+@keyframes logoGlow {
+  0%,
+  100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+      0 0 20px rgba($primary-color, 0.1);
+  }
+  50% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba($primary-color, 0.2);
+  }
+}
+
+// Grid de logos
+.logos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-lg;
+  padding: $spacing-lg 0;
+
+  .logo-cliente {
+    margin: 0 auto;
+
+    // Animación escalonada para grids
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.1}s;
+      }
+    }
+  }
+
+  @include responsive-tablet {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: $spacing-md;
+  }
+
+  @include responsive-mobile {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: $spacing-sm;
+  }
+}
+
+@mixin responsive-tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin responsive-mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
 // Placeholders
 %center-text {
   text-align: center;
