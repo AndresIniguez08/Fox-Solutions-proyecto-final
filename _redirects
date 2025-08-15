@@ -1,0 +1,7 @@
+/Fox-Solutions-proyecto-final/pages/nosotros.html    /pages/nosotros.html    200
+/Fox-Solutions-proyecto-final/pages/clientes.html   /pages/clientes.html    200
+/Fox-Solutions-proyecto-final/pages/servicios.html  /pages/servicios.html   200
+/Fox-Solutions-proyecto-final/pages/contacto.html   /pages/contacto.html    200
+
+# Fallback para cualquier ruta no encontrada
+/*    /index.html   200
