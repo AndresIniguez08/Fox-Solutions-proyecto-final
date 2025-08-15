@@ -1076,6 +1076,9 @@ footer .container p {
     min-height: 180px;
     padding: 10px;
   }
+  .bloque .imagen img:hover {
+    transform: translateY(-6px) scale(1.02);
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
