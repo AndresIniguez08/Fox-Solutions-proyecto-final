@@ -1,7 +1,17 @@
-/Fox-Solutions-proyecto-final/pages/nosotros.html    /pages/nosotros.html    200
-/Fox-Solutions-proyecto-final/pages/clientes.html   /pages/clientes.html    200
-/Fox-Solutions-proyecto-final/pages/servicios.html  /pages/servicios.html   200
-/Fox-Solutions-proyecto-final/pages/contacto.html   /pages/contacto.html    200
+# Redirects para recursos (CSS, imágenes, etc.)
+/Fox-Solutions-proyecto-final/css/*     /css/:splat     200
+/Fox-Solutions-proyecto-final/images/*  /images/:splat  200
+/Fox-Solutions-proyecto-final/icons/*   /icons/:splat   200
 
-# Fallback para cualquier ruta no encontrada
-/*    /index.html   200
+# Redirects para páginas
+/Fox-Solutions-proyecto-final/pages/nosotros.html   /pages/nosotros.html   200
+/Fox-Solutions-proyecto-final/pages/clientes.html   /pages/clientes.html   200
+/Fox-Solutions-proyecto-final/pages/servicios.html  /pages/servicios.html  200
+/Fox-Solutions-proyecto-final/pages/contacto.html   /pages/contacto.html   200
+
+# Redirect para index
+/Fox-Solutions-proyecto-final/index.html  /index.html  200
+/Fox-Solutions-proyecto-final/           /index.html  200
+
+# Fallback general
+/*  /index.html  200
