@@ -6,16 +6,19 @@ $light-color: whitesmoke;
 $whatsapp-color: #25d366;
 
 // Espaciados
+$spacing-xs: 0.5rem;
 $spacing-sm: 10px;
 $spacing-md: 20px;
 $spacing-lg: 30px;
+$spacing-xl: 40px;
+$spacing-xxl: 50px;
 
 // Breakpoints
 $tablet: 768px;
 $mobile: 528px;
 $mobile-xs: 400px;
 
-// mixin
+// mixins
 
 @mixin mobile-responsive {
   @media (max-width: $mobile) {
@@ -47,7 +50,7 @@ $mobile-xs: 400px;
   }
 }
 
-// mixin para que no colapse las cards
+// Mixin para que no colapse el contenido en pantallas pequeñas
 @mixin horizontal-row-layout {
   display: flex !important;
   flex-direction: row !important;
@@ -122,31 +125,6 @@ header {
     line-height: 1.3;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     max-width: 800px;
-    // Mobile específico para Servicios
-    .container .row .col {
-      margin-bottom: $spacing-md;
-      padding: $spacing-md;
-
-      h3 {
-        font-size: 1.5rem;
-        text-align: center;
-      }
-
-      p {
-        font-size: 1rem;
-        text-align: center;
-      }
-
-      ul {
-        text-align: left;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-
-      &:hover {
-        transform: translateY(-5px) scale(1.01);
-      }
-    }
   }
 }
 
@@ -295,7 +273,7 @@ main {
   }
 }
 
-// Servicios section
+// Servicios
 #servicios {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -354,7 +332,7 @@ main {
     }
   }
 
-  // Carousel indicadores
+  // Carousel indicdores
   .carousel-indicators {
     button {
       width: 12px;
@@ -397,7 +375,7 @@ main {
   }
 }
 
-// clientes
+//clientes
 
 // Container principal para clientes
 .clientes-container {
@@ -559,68 +537,6 @@ main {
   }
 }
 
-// WhatsApp button
-.button {
-  position: fixed;
-  bottom: $spacing-md;
-  right: $spacing-md;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: $spacing-sm;
-  background: linear-gradient(45deg, $whatsapp-color, #128c7e);
-  padding: 15px;
-  border-radius: 50px;
-  text-decoration: none;
-  color: white;
-  box-shadow: 0 5px 15px rgba($whatsapp-color, 0.3);
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(1.1);
-    color: white;
-    box-shadow: 0 8px 25px rgba($whatsapp-color, 0.5);
-  }
-
-  .whatsapp-icon {
-    width: 40px;
-    height: auto;
-  }
-}
-
-// Footer
-footer {
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  padding: $spacing-lg 0;
-  margin-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  position: relative;
-  z-index: 1;
-
-  .container {
-    text-align: center;
-
-    p {
-      margin: 0;
-      color: rgba($light-color, 0.8);
-      font-size: 0.9rem;
-    }
-  }
-}
-
-// Keyframes para animaciones
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 // nosotros
 
 // Bloques de contenido (Sobre nosotros, Historia, etc.)
@@ -700,7 +616,6 @@ footer {
     padding: $spacing-md;
 
     img {
-      // Contenedor base parecido a logo-cliente
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(8px);
       border: 2px solid rgba(255, 255, 255, 0.15);
@@ -717,44 +632,13 @@ footer {
       filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3)) brightness(0.9)
         contrast(1.1);
 
-      // Efecto de brillo tipo logo-cliente
-      &::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(
-          45deg,
-          transparent 30%,
-          rgba(255, 255, 255, 0.15) 50%,
-          transparent 70%
-        );
-        transform: rotate(45deg) translate(-100%, -100%);
-        transition: transform 0.8s ease;
-        pointer-events: none;
-      }
-
-      // Estados de hover
       &:hover {
         transform: translateY(-12px) scale(1.05) rotate(1deg);
         border-color: rgba($primary-color, 0.6);
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
-          0 0 40px rgba($primary-color, 0.3),
-          inset 0 2px 0 rgba(255, 255, 255, 0.3);
+          0 0 40px rgba($primary-color, 0.3);
         filter: drop-shadow(0 15px 40px rgba($primary-color, 0.4))
-          brightness(1.1) contrast(1.2) saturate(1.1);
-
-        &::before {
-          transform: rotate(45deg) translate(100%, 100%);
-        }
-      }
-
-      // Estados activos
-      &:active {
-        transform: translateY(-8px) scale(1.02);
-        transition: all 0.1s ease;
+          brightness(1.1) contrast(1.2);
       }
     }
   }
@@ -779,479 +663,287 @@ footer {
   }
 }
 
-// Variantes especiales para diferentes tipos de imágenes
-.bloque {
-  // Sobre nosotros (primer bloque)
-  &:nth-of-type(1) .imagen img {
-    border-color: rgba(#00d4ff, 0.3);
+// modifico estilos bootstrap
 
-    &:hover {
-      border-color: rgba(#00d4ff, 0.6);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#00d4ff, 0.3);
-    }
-  }
-
-  // Historia (segundo bloque)
-  &:nth-of-type(2) .imagen img {
-    border-color: rgba(#ff6b35, 0.3);
-
-    &:hover {
-      border-color: rgba(#ff6b35, 0.6);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#ff6b35, 0.3);
-    }
-  }
-
-  // Equipo (tercer bloque)
-  &:nth-of-type(3) .imagen img {
-    border-color: rgba(#5f27cd, 0.3);
-
-    &:hover {
-      border-color: rgba(#5f27cd, 0.6);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#5f27cd, 0.3);
-    }
-  }
-
-  // Valores (cuarto bloque)
-  &:nth-of-type(4) .imagen img {
-    border-color: rgba(#10ac84, 0.3);
-
-    &:hover {
-      border-color: rgba(#10ac84, 0.6);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#10ac84, 0.3);
-    }
-  }
-}
-
-// servicios
-
-// Container principal para servicios
-.servicios-container {
+.container.text-center {
   position: relative;
   z-index: 1;
-  min-height: 80vh;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: $spacing-lg !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-lg;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    transform: translateY(-5px);
+    box-shadow: 0 25px 80px rgba($primary-color, 0.15);
+  }
+
+  .row {
+    margin: 0 !important;
+
+    .col {
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(10px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 25px !important;
+      padding: $spacing-lg !important;
+      margin-bottom: $spacing-lg !important;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+      position: relative !important;
+      overflow: hidden !important;
+      height: auto !important;
+      min-height: 400px !important;
+      display: flex !important;
+      flex-direction: column !important;
+
+      // Efecto de brillo
+      &::before {
+        content: "" !important;
+        position: absolute !important;
+        top: -50% !important;
+        left: -50% !important;
+        width: 200% !important;
+        height: 200% !important;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.1) 50%,
+          transparent 70%
+        ) !important;
+        transform: rotate(45deg) translate(-100%, -100%) !important;
+        transition: transform 0.8s ease !important;
+        pointer-events: none !important;
+      }
+
+      &:hover {
+        transform: translateY(-10px) scale(1.02) !important;
+        background: rgba(255, 255, 255, 0.12) !important;
+        border-color: rgba($primary-color, 0.4) !important;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
+          0 0 40px rgba($primary-color, 0.2) !important;
+
+        &::before {
+          transform: rotate(45deg) translate(100%, 100%) !important;
+        }
+
+        h3 {
+          color: $primary-color !important;
+          transform: scale(1.05) !important;
+        }
+      }
+
+      h3 {
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        margin-bottom: $spacing-md !important;
+        color: $light-color !important;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5) !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        flex-shrink: 0 !important;
+
+        &::after {
+          content: "" !important;
+          position: absolute !important;
+          bottom: -8px !important;
+          left: 0 !important;
+          width: 50px !important;
+          height: 3px !important;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $secondary-color
+          ) !important;
+          border-radius: 2px !important;
+          transition: width 0.3s ease !important;
+        }
+      }
+
+      &:hover h3::after {
+        width: 80px !important;
+      }
+
+      p {
+        font-size: 1.1rem !important;
+        line-height: 1.6 !important;
+        color: rgba($light-color, 0.9) !important;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
+        margin-bottom: $spacing-md !important;
+        flex-grow: 1 !important;
+        text-align: center !important;
+      }
+
+      ul {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        flex-shrink: 0 !important;
+        text-align: left !important;
+
+        li {
+          font-size: 1rem !important;
+          color: rgba($light-color, 0.85) !important;
+          margin-bottom: $spacing-sm !important;
+          padding-left: 25px !important;
+          position: relative !important;
+          transition: all 0.3s ease !important;
+
+          &::before {
+            content: "✓" !important;
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            color: $primary-color !important;
+            font-weight: bold !important;
+            font-size: 1.1rem !important;
+            transition: all 0.3s ease !important;
+          }
+
+          &:hover {
+            color: $light-color !important;
+            transform: translateX(5px) !important;
+
+            &::before {
+              color: $secondary-color !important;
+              transform: scale(1.2) !important;
+            }
+          }
+        }
+      }
+
+      // Animaciones escalonadas
+      opacity: 0 !important;
+      transform: translateY(40px) !important;
+      animation: fadeInUp 0.8s ease forwards !important;
+
+      &:nth-child(1) {
+        animation-delay: 0.2s !important;
+        border-color: rgba(#00d4ff, 0.2) !important;
+
+        &:hover {
+          border-color: rgba(#00d4ff, 0.5) !important;
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
+            0 0 40px rgba(#00d4ff, 0.3) !important;
+        }
+
+        h3::after {
+          background: linear-gradient(45deg, #00d4ff, #0099cc) !important;
+        }
+
+        ul li::before {
+          color: #00d4ff !important;
+        }
+      }
+
+      &:nth-child(2) {
+        animation-delay: 0.4s !important;
+        border-color: rgba($primary-color, 0.2) !important;
+
+        &:hover {
+          border-color: rgba($primary-color, 0.5) !important;
+        }
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.6s !important;
+        border-color: rgba(#5f27cd, 0.2) !important;
+
+        &:hover {
+          border-color: rgba(#5f27cd, 0.5) !important;
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
+            0 0 40px rgba(#5f27cd, 0.3) !important;
+        }
+
+        h3::after {
+          background: linear-gradient(45deg, #5f27cd, #7b68ee) !important;
+        }
+
+        ul li::before {
+          color: #5f27cd !important;
+        }
+      }
+    }
+  }
+}
+
+// WhatsApp button
+.button {
+  position: fixed;
+  bottom: $spacing-md;
+  right: $spacing-md;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: linear-gradient(45deg, $whatsapp-color, #128c7e);
+  padding: 15px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 5px 15px rgba($whatsapp-color, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    color: white;
+    box-shadow: 0 8px 25px rgba($whatsapp-color, 0.5);
+  }
+
+  .whatsapp-icon {
+    width: 40px;
+    height: auto;
+  }
+}
+
+// Footer
+footer {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
   padding: $spacing-lg 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
 
   .container {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    padding: $spacing-lg;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    transition: all 0.4s ease;
+    text-align: center;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateY(-5px);
-      box-shadow: 0 25px 80px rgba($primary-color, 0.15);
+    p {
+      margin: 0;
+      color: rgba($light-color, 0.8);
+      font-size: 0.9rem;
     }
   }
 }
 
-// Tarjetas de servicios individuales
-.servicio-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 25px;
-  padding: $spacing-lg;
-  margin-bottom: $spacing-lg;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  // Efecto de brillo sutil
-  &::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      45deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.1) 50%,
-      transparent 70%
-    );
-    transform: rotate(45deg) translate(-100%, -100%);
-    transition: transform 0.8s ease;
-    pointer-events: none;
+// Keyframes para animaciones
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-
-  &:hover {
-    transform: translateY(-10px) scale(1.02);
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba($primary-color, 0.4);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
-      0 0 40px rgba($primary-color, 0.2), inset 0 2px 0 rgba(255, 255, 255, 0.2);
-
-    &::before {
-      transform: rotate(45deg) translate(100%, 100%);
-    }
-
-    h3 {
-      color: $primary-color;
-      transform: scale(1.05);
-    }
-
-    .service-icon {
-      transform: scale(1.2) rotate(5deg);
-    }
-  }
-
-  // Título del servicio
-  h3 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: $spacing-md;
-    color: $light-color;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: $spacing-sm;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(45deg, $primary-color, $secondary-color);
-      border-radius: 2px;
-      transition: width 0.3s ease;
-    }
-  }
-
-  &:hover h3::after {
-    width: 100px;
-  }
-
-  // Descripción del servicio
-  p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: rgba($light-color, 0.9);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    margin-bottom: $spacing-md;
-    flex-grow: 1;
-  }
-
-  // Lista de características
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      font-size: 1rem;
-      color: rgba($light-color, 0.85);
-      margin-bottom: $spacing-sm;
-      padding-left: 25px;
-      position: relative;
-      transition: all 0.3s ease;
-
-      &::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        top: 0;
-        color: $primary-color;
-        font-weight: bold;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-      }
-
-      &:hover {
-        color: $light-color;
-        transform: translateX(5px);
-
-        &::before {
-          color: $secondary-color;
-          transform: scale(1.2);
-        }
-      }
-    }
-  }
-
-  // Animación de entrada
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeInUp 0.8s ease forwards;
-
-  // Delays escalonados
-  &:nth-child(1) {
-    animation-delay: 0.2s;
-  }
-  &:nth-child(2) {
-    animation-delay: 0.4s;
-  }
-  &:nth-child(3) {
-    animation-delay: 0.6s;
-  }
-}
-
-// Iconos de servicios
-.service-icon {
-  font-size: 2rem;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
-}
-
-// Variantes de color para cada servicio
-.servicio-card {
-  // Desarrollo Web (primer servicio)
-  &:nth-child(1) {
-    border-color: rgba(#00d4ff, 0.2);
-
-    &:hover {
-      border-color: rgba(#00d4ff, 0.5);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#00d4ff, 0.3);
-    }
-
-    h3::after {
-      background: linear-gradient(45deg, #00d4ff, #0099cc);
-    }
-
-    ul li::before {
-      color: #00d4ff;
-    }
-  }
-
-  // Marketing Digital (segundo servicio)
-  &:nth-child(2) {
-    border-color: rgba($primary-color, 0.2);
-
-    &:hover {
-      border-color: rgba($primary-color, 0.5);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba($primary-color, 0.3);
-    }
-
-    h3::after {
-      background: linear-gradient(45deg, $primary-color, $secondary-color);
-    }
-  }
-
-  // Asesoría IT (tercer servicio)
-  &:nth-child(3) {
-    border-color: rgba(#5f27cd, 0.2);
-
-    &:hover {
-      border-color: rgba(#5f27cd, 0.5);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#5f27cd, 0.3);
-    }
-
-    h3::after {
-      background: linear-gradient(45deg, #5f27cd, #7b68ee);
-    }
-
-    ul li::before {
-      color: #5f27cd;
-    }
-  }
-}
-
-// Aplico estilos a las columnas de Bootstrap existentes
-.container .row .col {
-  padding: 0 15px;
-
-  // Convertir contenido en servicio-card
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 25px;
-  padding: $spacing-lg;
-  margin-bottom: $spacing-lg;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  // Efecto de brillo
-  &::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      45deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.1) 50%,
-      transparent 70%
-    );
-    transform: rotate(45deg) translate(-100%, -100%);
-    transition: transform 0.8s ease;
-    pointer-events: none;
-  }
-
-  &:hover {
-    transform: translateY(-10px) scale(1.02);
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba($primary-color, 0.4);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
-      0 0 40px rgba($primary-color, 0.2);
-
-    &::before {
-      transform: rotate(45deg) translate(100%, 100%);
-    }
-
-    h3 {
-      color: $primary-color;
-      transform: scale(1.05);
-    }
-  }
-
-  h3 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: $spacing-md;
-    color: $light-color;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
-    position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(45deg, $primary-color, $secondary-color);
-      border-radius: 2px;
-      transition: width 0.3s ease;
-    }
-  }
-
-  &:hover h3::after {
-    width: 80px;
-  }
-
-  p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: rgba($light-color, 0.9);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    margin-bottom: $spacing-md;
-    flex-grow: 1;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      font-size: 1rem;
-      color: rgba($light-color, 0.85);
-      margin-bottom: $spacing-sm;
-      padding-left: 25px;
-      position: relative;
-      transition: all 0.3s ease;
-
-      &::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        top: 0;
-        color: $primary-color;
-        font-weight: bold;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-      }
-
-      &:hover {
-        color: $light-color;
-        transform: translateX(5px);
-
-        &::before {
-          color: $secondary-color;
-          transform: scale(1.2);
-        }
-      }
-    }
-  }
-
-  // Animaciones escalonadas
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeInUp 0.8s ease forwards;
-
-  &:nth-child(1) {
-    animation-delay: 0.2s;
-  }
-  &:nth-child(2) {
-    animation-delay: 0.4s;
-  }
-  &:nth-child(3) {
-    animation-delay: 0.6s;
-  }
-
-  // Colores específicos por servicio
-  &:nth-child(1) {
-    border-color: rgba(#00d4ff, 0.2);
-
-    &:hover {
-      border-color: rgba(#00d4ff, 0.5);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#00d4ff, 0.3);
-    }
-
-    h3::after {
-      background: linear-gradient(45deg, #00d4ff, #0099cc);
-    }
-
-    ul li::before {
-      color: #00d4ff;
-    }
-  }
-
-  &:nth-child(2) {
-    border-color: rgba($primary-color, 0.2);
-
-    &:hover {
-      border-color: rgba($primary-color, 0.5);
-    }
-  }
-
-  &:nth-child(3) {
-    border-color: rgba(#5f27cd, 0.2);
-
-    &:hover {
-      border-color: rgba(#5f27cd, 0.5);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#5f27cd, 0.3);
-    }
-
-    h3::after {
-      background: linear-gradient(45deg, #5f27cd, #7b68ee);
-    }
-
-    ul li::before {
-      color: #5f27cd;
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 // responsive
 
-@media (max-width: 768px) {
+@include tablet-responsive {
   header,
   .page-header {
     min-height: 60vh;
     padding: $spacing-md;
 
     img {
-      max-width: 150px;
+      max-width: 180px;
     }
 
     h1 {
@@ -1351,19 +1043,58 @@ footer {
     }
   }
 
+  // SERVICIOS TABLET
+  .container .row {
+    .col {
+      @include mobile-card-fix;
+      margin-bottom: $spacing-lg;
+      min-height: 350px;
+
+      h3 {
+        font-size: 1.6rem;
+        text-align: center;
+        margin-bottom: $spacing-md;
+      }
+
+      p {
+        font-size: 1rem;
+        text-align: center;
+        margin-bottom: $spacing-md;
+      }
+
+      ul {
+        text-align: left;
+        max-width: 280px;
+        margin: 0 auto;
+
+        li {
+          font-size: 0.95rem;
+          margin-bottom: $spacing-sm;
+        }
+      }
+    }
+  }
+
   .whatsapp-icon {
     width: 35px;
   }
 }
 
-@media (max-width: 480px) {
+@include mobile-responsive {
   header,
   .page-header {
-    min-height: 50vh;
+    min-height: 45vh;
     padding: $spacing-sm;
 
     img {
-      max-width: 120px;
+      max-width: 280px;
+      margin-bottom: $spacing-xl;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      line-height: 1.3;
+      padding: 0 $spacing-md;
     }
   }
 
@@ -1384,7 +1115,7 @@ footer {
     padding: $spacing-sm;
   }
 
-  // Mobile específico nosotros
+  // Mobile específico para nosotros
   .bloque {
     margin: $spacing-md auto;
     padding: $spacing-sm;
@@ -1404,8 +1135,241 @@ footer {
       max-width: 240px;
       min-height: 180px;
       padding: $spacing-sm;
-      &:hover {
-        transform: translateY(-6px) scale(1.02);
+    }
+  }
+
+  .container.text-center {
+    padding: $spacing-xs !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+
+    .row {
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+
+      .col {
+        width: calc(100% - #{$spacing-sm}) !important;
+        max-width: 100% !important;
+        flex: 0 0 auto !important;
+        margin: 0 auto $spacing-lg auto !important;
+        padding: $spacing-lg $spacing-md !important;
+        min-height: 400px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 25px !important;
+        position: relative !important;
+        overflow: visible !important;
+
+        h3 {
+          font-size: 1.6rem !important;
+          text-align: center !important;
+          margin-bottom: $spacing-lg !important;
+          flex-shrink: 0 !important;
+          line-height: 1.3 !important;
+          word-wrap: break-word !important;
+        }
+
+        p {
+          font-size: 1rem !important;
+          text-align: center !important;
+          margin-bottom: $spacing-lg !important;
+          flex-grow: 1 !important;
+          line-height: 1.6 !important;
+          padding: 0 $spacing-sm !important;
+          word-wrap: break-word !important;
+        }
+
+        ul {
+          text-align: left !important;
+          width: 100% !important;
+          margin: 0 !important;
+          padding: 0 $spacing-md !important;
+          flex-shrink: 0 !important;
+
+          li {
+            font-size: 0.95rem !important;
+            margin-bottom: $spacing-md !important;
+            line-height: 1.5 !important;
+            padding-left: 30px !important;
+            word-wrap: break-word !important;
+
+            &::before {
+              font-size: 1.1rem !important;
+              left: 0 !important;
+              top: -1px !important;
+            }
+          }
+        }
+
+        &:hover {
+          transform: translateY(-3px) scale(1.005) !important;
+        }
+
+        &:last-child {
+          margin-bottom: $spacing-xxl !important;
+        }
+
+        // Colores bootstrap
+        &:nth-child(1) {
+          border-color: rgba(#00d4ff, 0.2) !important;
+
+          &:hover {
+            border-color: rgba(#00d4ff, 0.5) !important;
+          }
+
+          ul li::before {
+            color: #00d4ff !important;
+          }
+        }
+
+        &:nth-child(2) {
+          border-color: rgba($primary-color, 0.2) !important;
+
+          &:hover {
+            border-color: rgba($primary-color, 0.5) !important;
+          }
+        }
+
+        &:nth-child(3) {
+          border-color: rgba(#5f27cd, 0.2) !important;
+
+          &:hover {
+            border-color: rgba(#5f27cd, 0.5) !important;
+          }
+
+          ul li::before {
+            color: #5f27cd !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Ajuste navbar
+  .navbar {
+    padding: $spacing-xs 0;
+
+    #nav-brand {
+      font-size: 1.1rem;
+    }
+
+    #nav-link .nav-link {
+      padding: 12px $spacing-md;
+      font-size: 1rem;
+    }
+  }
+}
+
+@include mobile-xs-responsive {
+  header,
+  .page-header {
+    min-height: 35vh;
+
+    img {
+      max-width: 200px;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      line-height: 1.3;
+    }
+  }
+
+  .container.text-center {
+    padding: $spacing-xs !important;
+
+    .row {
+      @include horizontal-row-layout;
+      margin: 0 !important;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: $spacing-xs !important;
+      align-items: stretch !important;
+
+      .col {
+        flex: 1 !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: $spacing-sm !important;
+        min-height: 300px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 15px !important; // Más pequeño
+
+        h3 {
+          font-size: 1rem !important; // Más pequeño para que quepa
+          text-align: center !important;
+          margin-bottom: $spacing-sm !important;
+          line-height: 1.2 !important;
+          word-wrap: break-word !important;
+          hyphens: auto !important;
+        }
+
+        p {
+          font-size: 0.75rem !important; // Más pequeño
+          text-align: center !important;
+          margin-bottom: $spacing-sm !important;
+          line-height: 1.4 !important;
+          padding: 0 !important;
+          word-wrap: break-word !important;
+          hyphens: auto !important;
+        }
+
+        ul {
+          text-align: left !important;
+          width: 100% !important;
+          margin: 0 !important;
+          padding: 0 $spacing-xs !important;
+
+          li {
+            font-size: 0.7rem !important; // Más pequeño
+            margin-bottom: $spacing-xs !important;
+            line-height: 1.3 !important;
+            padding-left: 20px !important; // Menos espacio
+            word-wrap: break-word !important;
+            hyphens: auto !important;
+
+            &::before {
+              font-size: 0.9rem !important;
+              left: 0 !important;
+              top: 0 !important;
+            }
+          }
+        }
+
+        &:hover {
+          transform: translateY(-2px) scale(1.02) !important;
+        }
+
+        // Colores bootstrap
+        &:nth-child(1) {
+          border-color: rgba(#00d4ff, 0.3) !important;
+
+          ul li::before {
+            color: #00d4ff !important;
+          }
+        }
+
+        &:nth-child(2) {
+          border-color: rgba($primary-color, 0.3) !important;
+        }
+
+        &:nth-child(3) {
+          border-color: rgba(#5f27cd, 0.3) !important;
+
+          ul li::before {
+            color: #5f27cd !important;
+          }
+        }
       }
     }
   }
