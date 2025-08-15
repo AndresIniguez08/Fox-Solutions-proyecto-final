@@ -29,7 +29,7 @@ $mobile: 480px;
 }
 
 @mixin mobile-card-fix {
-  flex-direction: column !important;
+  flex-direction: row !important;
   min-height: auto;
   height: auto;
   margin-bottom: $spacing-md;
