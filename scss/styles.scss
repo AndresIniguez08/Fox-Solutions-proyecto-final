@@ -1,3 +1,8 @@
+// ==========================================
+// FOX SOLUTIONS - SASS BÁSICO
+// Relacionado directamente con tu HTML
+// ==========================================
+
 // Variables básicas
 $primary-color: #ff6b35;
 $secondary-color: #f7931e;
@@ -33,10 +38,19 @@ $mobile: 480px;
   }
 }
 
-// Logo cliente
+@mixin responsive-tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
 
+@mixin responsive-mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
 .logo-cliente {
-  // Contenedor base con glassmorphism
+  // Contenedor
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -235,7 +249,6 @@ $mobile: 480px;
     @content;
   }
 }
-
 // Placeholders
 %center-text {
   text-align: center;
