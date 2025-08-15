@@ -14,239 +14,6 @@ $spacing-lg: 30px;
 $tablet: 768px;
 $mobile: 480px;
 
-// Mixins básicos
-@mixin video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-@mixin hover-effect {
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-}
-
-// LOGO-CLIENTE
-
-.logo-cliente {
-  // Contenedor base
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: $spacing-md;
-  position: relative;
-  overflow: hidden;
-  max-width: 180px;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-  // Efecto de brillo sutil
-  &::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      45deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.1) 50%,
-      transparent 70%
-    );
-    transform: rotate(45deg) translate(-100%, -100%);
-    transition: transform 0.6s ease;
-  }
-
-  // Estados de hover
-  &:hover {
-    transform: translateY(-8px) scale(1.08);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba($primary-color, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
-      0 0 30px rgba($primary-color, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-
-    &::before {
-      transform: rotate(45deg) translate(100%, 100%);
-    }
-
-    // Efecto en la imagen interna
-    img {
-      transform: scale(1.1);
-      filter: drop-shadow(0 10px 30px rgba($primary-color, 0.3)) brightness(1.1)
-        contrast(1.1);
-    }
-  }
-
-  // Imagen dentro del logo-cliente
-  img {
-    width: 100%;
-    height: auto;
-    max-width: 140px;
-    object-fit: contain;
-    transition: all 0.4s ease;
-    border-radius: 10px;
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2)) brightness(0.95);
-  }
-
-  // Variantes por tipo de logo
-  &.logo-tech {
-    border-color: rgba(#00d4ff, 0.3);
-
-    &:hover {
-      border-color: rgba(#00d4ff, 0.6);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(#00d4ff, 0.3);
-    }
-  }
-
-  &.logo-food {
-    border-color: rgba(#ff4757, 0.3);
-
-    &:hover {
-      border-color: rgba(#ff4757, 0.6);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(#ff4757, 0.3);
-    }
-  }
-
-  &.logo-fashion {
-    border-color: rgba(#5f27cd, 0.3);
-
-    &:hover {
-      border-color: rgba(#5f27cd, 0.6);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(#5f27cd, 0.3);
-    }
-  }
-
-  &.logo-social {
-    border-color: rgba(#0984e3, 0.3);
-
-    &:hover {
-      border-color: rgba(#0984e3, 0.6);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(#0984e3, 0.3);
-    }
-  }
-
-  // Estados activos y focus
-  &:active {
-    transform: translateY(-4px) scale(1.04);
-    transition: all 0.1s ease;
-  }
-
-  &:focus {
-    outline: none;
-    border-color: rgba($primary-color, 0.8);
-    box-shadow: 0 0 0 3px rgba($primary-color, 0.2),
-      0 15px 35px rgba(0, 0, 0, 0.3);
-  }
-
-  // Responsive para logo-cliente
-  @include responsive-tablet {
-    max-width: 140px;
-    min-height: 100px;
-    padding: $spacing-sm;
-
-    img {
-      max-width: 110px;
-    }
-  }
-
-  @include responsive-mobile {
-    max-width: 120px;
-    min-height: 80px;
-    padding: $spacing-sm;
-
-    img {
-      max-width: 90px;
-    }
-
-    &:hover {
-      transform: translateY(-4px) scale(1.05);
-    }
-  }
-}
-
-// Clase especial para logos destacados
-.logo-cliente.destacado {
-  animation: logoGlow 3s ease-in-out infinite;
-  border-color: rgba($primary-color, 0.4);
-}
-
-// Animación de pulso para logos destacados
-@keyframes logoGlow {
-  0%,
-  100% {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
-      0 0 20px rgba($primary-color, 0.1);
-  }
-  50% {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
-      0 0 30px rgba($primary-color, 0.2);
-  }
-}
-
-// Grid de logos
-.logos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: $spacing-lg;
-  padding: $spacing-lg 0;
-
-  .logo-cliente {
-    margin: 0 auto;
-
-    // Animación escalonada para grids
-    @for $i from 1 through 12 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{($i - 1) * 0.1}s;
-      }
-    }
-  }
-
-  @include responsive-tablet {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: $spacing-md;
-  }
-
-  @include responsive-mobile {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: $spacing-sm;
-  }
-}
-
-@mixin responsive-tablet {
-  @media (max-width: $tablet) {
-    @content;
-  }
-}
-
-@mixin responsive-mobile {
-  @media (max-width: $mobile) {
-    @content;
-  }
-}
-
-// Placeholders
-%center-text {
-  text-align: center;
-}
-
-%flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 // Reset básico
 * {
   margin: 0;
@@ -258,21 +25,31 @@ $mobile: 480px;
 #body {
   font-family: "Poppins", sans-serif;
   color: $light-color;
-  @extend %center-text;
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
 }
 
-// Header
+// Video Background
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+// Header (para index - pantalla completa)
 header {
   min-height: 100vh;
-  @extend %flex-center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   position: relative;
   padding: $spacing-md;
-
-  // Video background
-  .video-background {
-    @include video-background;
-  }
 
   // Logo
   img {
@@ -280,14 +57,10 @@ header {
     height: auto;
     margin-bottom: $spacing-lg;
     filter: drop-shadow(0 5px 15px rgba($primary-color, 0.3));
-    @include hover-effect;
+    transition: all 0.3s ease;
 
-    @include responsive-tablet {
-      max-width: 200px;
-    }
-
-    @include responsive-mobile {
-      max-width: 150px;
+    &:hover {
+      transform: scale(1.05);
     }
   }
 
@@ -298,10 +71,48 @@ header {
     line-height: 1.3;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     max-width: 800px;
+  }
+}
 
-    @include responsive-mobile {
-      font-size: 1.5rem;
+// Header para páginas internas (más pequeño)
+.page-header {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  padding: $spacing-md;
+  margin-bottom: $spacing-lg;
+
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  img {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: $spacing-md;
+    filter: drop-shadow(0 5px 15px rgba($primary-color, 0.3));
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
     }
+  }
+
+  h1 {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.3;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    max-width: 600px;
   }
 }
 
@@ -309,66 +120,66 @@ header {
 main {
   position: relative;
   z-index: 1;
+}
 
-  // Navbar
-  .navbar {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: $spacing-sm 0;
+// Navbar
+.navbar {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: $spacing-sm 0;
 
-    .container-fluid {
-      position: relative;
+  .container-fluid {
+    position: relative;
+  }
+
+  // Brand
+  #nav-brand {
+    color: $light-color !important;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $primary-color !important;
+      transform: scale(1.05);
     }
+  }
 
-    // Brand
-    #nav-brand {
+  // Toggler
+  .navbar-toggler {
+    border: none;
+    padding: 5px;
+
+    .icono-nav {
+      width: 25px;
+      height: 25px;
+      filter: invert(1);
+    }
+  }
+
+  // Navigation links
+  #nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding-top: $spacing-md;
+
+    .nav-link {
       color: $light-color !important;
-      font-size: 1.2rem;
-      font-weight: 600;
       text-decoration: none;
+      padding: 12px $spacing-md;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
+      font-weight: 500;
 
       &:hover {
-        color: $primary-color !important;
-        transform: scale(1.05);
-      }
-    }
-
-    // Toggler
-    .navbar-toggler {
-      border: none;
-      padding: 5px;
-
-      .icono-nav {
-        width: 25px;
-        height: 25px;
-        filter: invert(1);
-      }
-    }
-
-    // Navigation links
-    #nav-link {
-      display: flex;
-      flex-direction: column;
-      gap: $spacing-sm;
-      padding-top: $spacing-md;
-
-      .nav-link {
-        color: $light-color !important;
-        text-decoration: none;
-        padding: 12px $spacing-md;
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: all 0.3s ease;
-        font-weight: 500;
-
-        &:hover {
-          background: linear-gradient(45deg, $primary-color, $secondary-color);
-          color: white !important;
-          transform: translateY(-2px);
-        }
+        background: linear-gradient(45deg, $primary-color, $secondary-color);
+        color: white !important;
+        transform: translateY(-2px);
       }
     }
   }
@@ -376,7 +187,7 @@ main {
 
 // Subtítulos
 .subtitulos {
-  @extend %center-text;
+  text-align: center;
   margin: $spacing-lg 0;
 
   h2 {
@@ -401,11 +212,6 @@ main {
       background: linear-gradient(45deg, $primary-color, $secondary-color);
       z-index: -1;
     }
-
-    @include responsive-tablet {
-      font-size: 1.5rem;
-      padding: 15px $spacing-md;
-    }
   }
 
   &:hover h2 {
@@ -429,14 +235,6 @@ main {
     object-fit: cover;
     border-radius: 15px;
     transition: transform 0.5s ease;
-
-    @include responsive-tablet {
-      height: 300px;
-    }
-
-    @include responsive-mobile {
-      height: 250px;
-    }
   }
 
   // Carousel items
@@ -465,11 +263,7 @@ main {
       color: white;
 
       &.black {
-        color: white; // Override para mejor legibilidad
-      }
-
-      @include responsive-mobile {
-        font-size: 1.1rem;
+        color: white;
       }
     }
 
@@ -479,11 +273,7 @@ main {
       color: rgba(255, 255, 255, 0.9);
 
       &.black {
-        color: rgba(255, 255, 255, 0.9); // Override para mejor legibilidad
-      }
-
-      @include responsive-mobile {
-        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
       }
     }
   }
@@ -531,6 +321,170 @@ main {
   }
 }
 
+// ==========================================
+// ESTILOS PARA CLIENTES
+// ==========================================
+
+// Container principal para clientes
+.clientes-container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: $spacing-lg 0;
+}
+
+// Cliente destacado
+.cliente-destacado {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: $spacing-lg;
+  margin: $spacing-lg auto;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-lg;
+  max-width: 1000px;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba($primary-color, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  // Logo del cliente
+  img {
+    max-width: 150px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+
+    &:hover {
+      transform: scale(1.1) rotate(2deg);
+      filter: drop-shadow(0 8px 25px rgba($primary-color, 0.4));
+    }
+  }
+
+  // Texto del cliente
+  .texto-cliente {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: $light-color;
+      margin: 0;
+      font-style: italic;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      width: 100%;
+
+      em {
+        font-style: normal;
+        position: relative;
+
+        &::before {
+          content: '"';
+          color: $primary-color;
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+
+        &::after {
+          content: '"';
+          color: $primary-color;
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  // Efectos especiales para cada cliente
+  &:nth-child(odd) {
+    flex-direction: row;
+  }
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  // Animación de entrada
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+
+  // Delays escalonados
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  &:nth-child(4) {
+    animation-delay: 0.6s;
+  }
+  &:nth-child(5) {
+    animation-delay: 0.8s;
+  }
+  &:nth-child(6) {
+    animation-delay: 1s;
+  }
+}
+
+// Logo-cliente específico
+.logo-cliente {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: $spacing-md;
+  position: relative;
+  overflow: hidden;
+  max-width: 180px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+
+  &:hover {
+    transform: translateY(-8px) scale(1.08);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba($primary-color, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba($primary-color, 0.2);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 140px;
+    object-fit: contain;
+    transition: all 0.4s ease;
+    border-radius: 10px;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 10px 30px rgba($primary-color, 0.3)) brightness(1.1);
+  }
+}
+
 // WhatsApp button
 .button {
   position: fixed;
@@ -557,10 +511,6 @@ main {
   .whatsapp-icon {
     width: 40px;
     height: auto;
-
-    @include responsive-mobile {
-      width: 35px;
-    }
   }
 }
 
@@ -571,9 +521,11 @@ footer {
   padding: $spacing-lg 0;
   margin-top: 3rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
 
   .container {
-    @extend %center-text;
+    text-align: center;
 
     p {
       margin: 0;
@@ -583,22 +535,105 @@ footer {
   }
 }
 
-// Responsive adjustments
-@include responsive-tablet {
-  header {
-    min-height: 80vh;
+// Keyframes para animaciones
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ==========================================
+// RESPONSIVE DESIGN (SIN MIXINS)
+// ==========================================
+
+@media (max-width: 768px) {
+  header,
+  .page-header {
+    min-height: 60vh;
     padding: $spacing-md;
+
+    img {
+      max-width: 150px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .subtitulos h2 {
+    font-size: 1.5rem;
+    padding: 15px $spacing-md;
   }
 
   #servicios {
     padding: 15px;
+
+    .servicio {
+      height: 300px;
+    }
+
+    .carousel-caption {
+      h5 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .cliente-destacado {
+    flex-direction: column !important;
+    text-align: center;
+    gap: $spacing-md;
+    margin: $spacing-md;
+    padding: $spacing-md;
+
+    img {
+      max-width: 120px;
+      margin-bottom: $spacing-sm;
+    }
+
+    .texto-cliente p {
+      font-size: 1rem;
+    }
+  }
+
+  .logo-cliente {
+    max-width: 120px;
+    min-height: 80px;
+    padding: $spacing-sm;
+
+    img {
+      max-width: 90px;
+    }
+
+    &:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+  }
+
+  .whatsapp-icon {
+    width: 35px;
   }
 }
 
-@include responsive-mobile {
-  header {
-    min-height: 70vh;
+@media (max-width: 480px) {
+  header,
+  .page-header {
+    min-height: 50vh;
     padding: $spacing-sm;
+
+    img {
+      max-width: 120px;
+    }
   }
 
   .subtitulos h2 {
@@ -606,6 +641,15 @@ footer {
   }
 
   #servicios {
+    padding: $spacing-sm;
+
+    .servicio {
+      height: 250px;
+    }
+  }
+
+  .cliente-destacado {
+    margin: $spacing-sm;
     padding: $spacing-sm;
   }
 }
