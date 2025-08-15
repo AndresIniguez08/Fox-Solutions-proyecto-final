@@ -10,14 +10,21 @@ $spacing-sm: 10px;
 $spacing-md: 20px;
 $spacing-lg: 30px;
 
-// Breakpoints
+// Breakpoints actualizados
 $tablet: 768px;
-$mobile: 480px;
+$mobile: 528px; // Cambiado de 480px a 528px según tu observación
+$mobile-xs: 400px; // Nuevo breakpoint para pantallas muy pequeñas
 
-// MIXINS
+// mixins
 
 @mixin mobile-responsive {
   @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin mobile-xs-responsive {
+  @media (max-width: $mobile-xs) {
     @content;
   }
 }
@@ -29,14 +36,32 @@ $mobile: 480px;
 }
 
 @mixin mobile-card-fix {
-  flex-direction: row !important;
+  flex-direction: column !important;
   min-height: auto;
   height: auto;
   margin-bottom: $spacing-md;
   padding: $spacing-md;
 
   &:hover {
-    transform: translateY(-5px) scale(1.5);
+    transform: translateY(-5px) scale(1.01);
+  }
+}
+
+//mixin para que no colapse el contenido en pantallas pequeñas
+@mixin horizontal-row-layout {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  gap: $spacing-xs;
+  align-items: stretch;
+
+  .col {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: $spacing-sm;
+    min-height: 280px;
+    font-size: 0.8rem;
   }
 }
 
@@ -210,7 +235,7 @@ main {
     }
   }
 
-  // Navigation links
+  // Nav links
   #nav-link {
     display: flex;
     flex-direction: column;
@@ -270,7 +295,7 @@ main {
   }
 }
 
-// Servicios
+// Servicios section
 #servicios {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -279,7 +304,7 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
-  // Carousel imagenes
+  // Carousel images
   .servicio {
     width: 100%;
     height: 400px;
@@ -297,7 +322,7 @@ main {
     }
   }
 
-  // Carousel caps
+  // Carousel captions
   .carousel-caption {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
@@ -329,7 +354,7 @@ main {
     }
   }
 
-  // Carousel indicadores
+  // Carousel indicators
   .carousel-indicators {
     button {
       width: 12px;
@@ -347,7 +372,7 @@ main {
     }
   }
 
-  // Carousel controles
+  // Carousel controls
   .carousel-control-prev,
   .carousel-control-next {
     width: 50px;
@@ -667,7 +692,7 @@ footer {
     }
   }
 
-  // Sección de imagen (con el estilo logo-cliente mejorado)
+  // Sección de imagen como logo-cliente
   .imagen {
     flex: 1;
     min-width: 300px;
@@ -692,7 +717,7 @@ footer {
       filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3)) brightness(0.9)
         contrast(1.1);
 
-      // Efecto de brillo parecidos a logo-cliente
+      // Efecto de brillo parecido a logo-cliente
       &::before {
         content: "";
         position: absolute;
@@ -711,7 +736,7 @@ footer {
         pointer-events: none;
       }
 
-      // Estados de hover (mejorados)
+      // Estados de hover
       &:hover {
         transform: translateY(-12px) scale(1.05) rotate(1deg);
         border-color: rgba($primary-color, 0.6);
@@ -797,7 +822,7 @@ footer {
   }
 }
 
-// ESTILOS PARA SERVICIOS
+// servicios
 
 // Container principal para servicios
 .servicios-container {
@@ -1037,7 +1062,7 @@ footer {
 .container .row .col {
   padding: 0 15px;
 
-  // Convierto el contenido en servicio-card
+  // Convertir contenido en servicio-card
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1217,7 +1242,7 @@ footer {
   }
 }
 
-// RESPONSIVE
+// responsive
 
 @media (max-width: 768px) {
   header,
