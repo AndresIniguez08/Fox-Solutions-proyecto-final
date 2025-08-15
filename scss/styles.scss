@@ -14,6 +14,32 @@ $spacing-lg: 30px;
 $tablet: 768px;
 $mobile: 480px;
 
+// mixins para responsividad
+
+@mixin mobile-responsive {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet-responsive {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin mobile-card-fix {
+  flex-direction: column !important;
+  min-height: auto;
+  height: auto;
+  margin-bottom: $spacing-md;
+  padding: $spacing-md;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.01);
+  }
+}
+
 // Reset básico
 * {
   margin: 0;
@@ -271,7 +297,7 @@ main {
     }
   }
 
-  // Carousel captions
+  // Carousel caps
   .carousel-caption {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
@@ -303,7 +329,7 @@ main {
     }
   }
 
-  // Carousel indicators
+  // Carousel indicadores
   .carousel-indicators {
     button {
       width: 12px;
@@ -570,7 +596,7 @@ footer {
   }
 }
 
-// Nostros
+// nosotros
 
 // Bloques de contenido (Sobre nosotros, Historia, etc.)
 .bloque {
@@ -666,7 +692,7 @@ footer {
       filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3)) brightness(0.9)
         contrast(1.1);
 
-      // Efecto de brillo sutil (como logo-cliente)
+      // Efecto de brillo parecido a logo-cliente
       &::before {
         content: "";
         position: absolute;
@@ -685,7 +711,7 @@ footer {
         pointer-events: none;
       }
 
-      // Estados de hover
+      // Estados de hover (mejorados)
       &:hover {
         transform: translateY(-12px) scale(1.05) rotate(1deg);
         border-color: rgba($primary-color, 0.6);
@@ -771,7 +797,7 @@ footer {
   }
 }
 
-// ESTILOS PARA SERVICIOS
+// servicios
 
 // Container principal para servicios
 .servicios-container {
@@ -1011,7 +1037,7 @@ footer {
 .container .row .col {
   padding: 0 15px;
 
-  // Convertir contenido en servicio-card
+  // servicio-card
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1191,6 +1217,8 @@ footer {
   }
 }
 
+// responsive
+
 @media (max-width: 768px) {
   header,
   .page-header {
@@ -1260,7 +1288,7 @@ footer {
     }
   }
 
-  // Responsive para bloques nosotros
+  // Responsive para nosotros
   .bloque {
     flex-direction: column !important;
     text-align: center;
@@ -1331,7 +1359,7 @@ footer {
     padding: $spacing-sm;
   }
 
-  // Mobile específico nosotros
+  // Mobile específico para Nostros
   .bloque {
     margin: $spacing-md auto;
     padding: $spacing-sm;
