@@ -159,7 +159,7 @@ main {
     }
   }
 
-  // Navigation links
+  // Nav links
   #nav-link {
     display: flex;
     flex-direction: column;
@@ -219,7 +219,7 @@ main {
   }
 }
 
-// Servicios section
+// Servicios
 #servicios {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -228,7 +228,7 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
-  // Carousel images
+  // Carousel imagines
   .servicio {
     width: 100%;
     height: 400px;
@@ -321,9 +321,7 @@ main {
   }
 }
 
-// ==========================================
-// ESTILOS PARA CLIENTES
-// ==========================================
+// Clientes
 
 // Container principal para clientes
 .clientes-container {
@@ -547,9 +545,224 @@ footer {
   }
 }
 
-// ==========================================
-// RESPONSIVE DESIGN (SIN MIXINS)
-// ==========================================
+// Nosotros
+
+// Bloques de contenido (Sobre nosotros, Historia, etc.)
+.bloque {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px auto;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding: $spacing-lg;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba($primary-color, 0.15);
+    border-color: rgba($primary-color, 0.3);
+  }
+
+  // Dirección izquierda (imagen a la derecha)
+  &.izquierda {
+    flex-direction: row;
+  }
+
+  // Dirección derecha (imagen a la izquierda)
+  &.derecha {
+    flex-direction: row-reverse;
+  }
+
+  // Sección de texto
+  .texto {
+    flex: 1;
+    min-width: 300px;
+    color: $light-color;
+    padding: $spacing-md;
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: $spacing-md;
+      color: $primary-color;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(45deg, $primary-color, $secondary-color);
+        border-radius: 2px;
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      color: rgba($light-color, 0.95);
+    }
+  }
+
+  // Sección de imagen logo-cliente mejor
+  .imagen {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    padding: $spacing-md;
+
+    img {
+      // Contenedor base parecido a logo-cliente
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 25px;
+      padding: $spacing-md;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      min-height: 250px;
+      object-fit: cover;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3)) brightness(0.9)
+        contrast(1.1);
+
+      // Efecto de brillo sutil (como logo-cliente)
+      &::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.15) 50%,
+          transparent 70%
+        );
+        transform: rotate(45deg) translate(-100%, -100%);
+        transition: transform 0.8s ease;
+        pointer-events: none;
+      }
+
+      // Estados de hover (mejorados)
+      &:hover {
+        transform: translateY(-12px) scale(1.05) rotate(1deg);
+        border-color: rgba($primary-color, 0.6);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
+          0 0 40px rgba($primary-color, 0.3),
+          inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        filter: drop-shadow(0 15px 40px rgba($primary-color, 0.4))
+          brightness(1.1) contrast(1.2) saturate(1.1);
+
+        &::before {
+          transform: rotate(45deg) translate(100%, 100%);
+        }
+      }
+
+      // Estados activos
+      &:active {
+        transform: translateY(-8px) scale(1.02);
+        transition: all 0.1s ease;
+      }
+    }
+  }
+
+  // Animación de entrada para cada bloque
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1s ease forwards;
+
+  // Delays escalonados para cada bloque
+  &:nth-of-type(1) {
+    animation-delay: 0.2s;
+  }
+  &:nth-of-type(2) {
+    animation-delay: 0.4s;
+  }
+  &:nth-of-type(3) {
+    animation-delay: 0.6s;
+  }
+  &:nth-of-type(4) {
+    animation-delay: 0.8s;
+  }
+}
+
+// Variantes especiales para diferentes tipos de imágenes
+.bloque {
+  // Sobre nosotros (primer bloque)
+  &:nth-of-type(1) .imagen img {
+    border-color: rgba(#00d4ff, 0.3);
+
+    &:hover {
+      border-color: rgba(#00d4ff, 0.6);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#00d4ff, 0.3);
+    }
+  }
+
+  // Historia (segundo bloque)
+  &:nth-of-type(2) .imagen img {
+    border-color: rgba(#ff6b35, 0.3);
+
+    &:hover {
+      border-color: rgba(#ff6b35, 0.6);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#ff6b35, 0.3);
+    }
+  }
+
+  // Equipo (tercer bloque)
+  &:nth-of-type(3) .imagen img {
+    border-color: rgba(#5f27cd, 0.3);
+
+    &:hover {
+      border-color: rgba(#5f27cd, 0.6);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#5f27cd, 0.3);
+    }
+  }
+
+  // Valores (cuarto bloque)
+  &:nth-of-type(4) .imagen img {
+    border-color: rgba(#10ac84, 0.3);
+
+    &:hover {
+      border-color: rgba(#10ac84, 0.6);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(#10ac84, 0.3);
+    }
+  }
+}
+
+// Animación adicional para el brillo
+@keyframes imageGlow {
+  0%,
+  100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba($primary-color, 0.1);
+  }
+  50% {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba($primary-color, 0.2);
+  }
+}
+
+// Clase especial para imágenes destacadas
+.imagen.destacada img {
+  animation: imageGlow 4s ease-in-out infinite;
+}
 
 @media (max-width: 768px) {
   header,
@@ -620,6 +833,44 @@ footer {
     }
   }
 
+  // Responsive para bloques nosotros
+  .bloque {
+    flex-direction: column !important;
+    text-align: center;
+    margin: $spacing-lg auto;
+    padding: $spacing-md;
+
+    .texto {
+      order: 1;
+      min-width: auto;
+
+      h2 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+
+      p {
+        font-size: 1rem;
+        text-align: center;
+      }
+    }
+
+    .imagen {
+      order: 2;
+      min-width: auto;
+      margin-top: $spacing-md;
+
+      img {
+        max-width: 280px;
+        min-height: 200px;
+
+        &:hover {
+          transform: translateY(-8px) scale(1.03);
+        }
+      }
+    }
+  }
+
   .whatsapp-icon {
     width: 35px;
   }
@@ -651,5 +902,28 @@ footer {
   .cliente-destacado {
     margin: $spacing-sm;
     padding: $spacing-sm;
+  }
+
+  // Mobile específico para nosotros
+  .bloque {
+    margin: $spacing-md auto;
+    padding: $spacing-sm;
+
+    .texto {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+    }
+
+    .imagen img {
+      max-width: 240px;
+      min-height: 180px;
+      padding: $spacing-sm;
+    }
   }
 }
