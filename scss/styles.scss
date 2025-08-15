@@ -19,7 +19,6 @@ $mobile: 528px;
 $mobile-xs: 400px;
 
 // mixins
-
 @mixin mobile-responsive {
   @media (max-width: $mobile) {
     @content;
@@ -82,6 +81,7 @@ $mobile-xs: 400px;
   text-align: center;
   min-height: 100vh;
   position: relative;
+  z-index: 1; // o
 }
 
 // Video Background
@@ -92,7 +92,8 @@ $mobile-xs: 400px;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
+  z-index: 0; //
+  pointer-events: none;
 }
 
 // Header (para index - pantalla completa)
@@ -104,6 +105,7 @@ header {
   flex-direction: column;
   position: relative;
   padding: $spacing-md;
+  z-index: 2;
 
   // Logo
   img {
@@ -138,16 +140,7 @@ header {
   position: relative;
   padding: $spacing-md;
   margin-bottom: $spacing-lg;
-
-  .video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
+  z-index: 2;
 
   img {
     max-width: 180px;
@@ -173,7 +166,7 @@ header {
 // Main content
 main {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 // Navbar
@@ -182,7 +175,7 @@ main {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding: $spacing-sm 0;
-
+  z-index: 1000;
   .container-fluid {
     position: relative;
   }
@@ -243,6 +236,8 @@ main {
 .subtitulos {
   text-align: center;
   margin: $spacing-lg 0;
+  position: relative;
+  z-index: 3;
 
   h2 {
     color: $light-color;
@@ -281,6 +276,8 @@ main {
   padding: $spacing-md;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 3;
 
   // Carousel imagenes
   .servicio {
@@ -332,7 +329,7 @@ main {
     }
   }
 
-  // Carousel indicdores
+  // Carousel indicadores
   .carousel-indicators {
     button {
       width: 12px;
@@ -375,12 +372,10 @@ main {
   }
 }
 
-//clientes
-
 // Container principal para clientes
 .clientes-container {
   position: relative;
-  z-index: 1;
+  z-index: 3; // Añadido
   min-height: 100vh;
   padding: $spacing-lg 0;
 }
@@ -401,6 +396,8 @@ main {
   gap: $spacing-lg;
   max-width: 1000px;
   text-align: center;
+  position: relative;
+  z-index: 3;
 
   &:hover {
     transform: translateY(-5px);
@@ -512,6 +509,7 @@ main {
   align-items: center;
   justify-content: center;
   transition: all 0.4s ease;
+  z-index: 3;
 
   &:hover {
     transform: translateY(-8px) scale(1.08);
@@ -537,8 +535,6 @@ main {
   }
 }
 
-// nosotros
-
 // Bloques de contenido (Sobre nosotros, Historia, etc.)
 .bloque {
   display: flex;
@@ -555,6 +551,8 @@ main {
   border-radius: 25px;
   transition: all 0.4s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 3;
 
   &:hover {
     transform: translateY(-8px);
@@ -664,10 +662,9 @@ main {
 }
 
 // modifico estilos bootstrap
-
 .container.text-center {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   background: rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -701,6 +698,7 @@ main {
       min-height: 400px !important;
       display: flex !important;
       flex-direction: column !important;
+      z-index: 4;
 
       // Efecto de brillo
       &::before {
@@ -877,7 +875,7 @@ main {
   position: fixed;
   bottom: $spacing-md;
   right: $spacing-md;
-  z-index: 9999;
+  z-index: 9999; // Ya está bien
   display: flex;
   align-items: center;
   gap: $spacing-sm;
@@ -909,7 +907,7 @@ footer {
   margin-top: 3rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
-  z-index: 1;
+  z-index: 3;
 
   .container {
     text-align: center;
@@ -934,13 +932,14 @@ footer {
   }
 }
 
-// responsive
+// RESPONSIVE
 
 @include tablet-responsive {
   header,
   .page-header {
     min-height: 60vh;
     padding: $spacing-md;
+    z-index: 2;
 
     img {
       max-width: 180px;
@@ -951,13 +950,18 @@ footer {
     }
   }
 
-  .subtitulos h2 {
-    font-size: 1.5rem;
-    padding: 15px $spacing-md;
+  .subtitulos {
+    z-index: 3;
+
+    h2 {
+      font-size: 1.5rem;
+      padding: 15px $spacing-md;
+    }
   }
 
   #servicios {
     padding: 15px;
+    z-index: 3;
 
     .servicio {
       height: 300px;
@@ -980,6 +984,7 @@ footer {
     gap: $spacing-md;
     margin: $spacing-md;
     padding: $spacing-md;
+    z-index: 3;
 
     img {
       max-width: 120px;
@@ -995,6 +1000,7 @@ footer {
     max-width: 120px;
     min-height: 80px;
     padding: $spacing-sm;
+    z-index: 3;
 
     img {
       max-width: 90px;
@@ -1011,6 +1017,7 @@ footer {
     text-align: center;
     margin: $spacing-lg auto;
     padding: $spacing-md;
+    z-index: 3;
 
     .texto {
       order: 1;
@@ -1049,6 +1056,7 @@ footer {
       @include mobile-card-fix;
       margin-bottom: $spacing-lg;
       min-height: 350px;
+      z-index: 4;
 
       h3 {
         font-size: 1.6rem;
@@ -1085,6 +1093,7 @@ footer {
   .page-header {
     min-height: 45vh;
     padding: $spacing-sm;
+    z-index: 2;
 
     img {
       max-width: 280px;
@@ -1098,12 +1107,17 @@ footer {
     }
   }
 
-  .subtitulos h2 {
-    font-size: 1.3rem;
+  .subtitulos {
+    z-index: 3;
+
+    h2 {
+      font-size: 1.3rem;
+    }
   }
 
   #servicios {
     padding: $spacing-sm;
+    z-index: 3; // Mantenido
 
     .servicio {
       height: 250px;
@@ -1113,12 +1127,14 @@ footer {
   .cliente-destacado {
     margin: $spacing-sm;
     padding: $spacing-sm;
+    z-index: 3; // Mantenido
   }
 
   // Mobile específico para nosotros
   .bloque {
     margin: $spacing-md auto;
     padding: $spacing-sm;
+    z-index: 3;
 
     .texto {
       h2 {
@@ -1142,6 +1158,7 @@ footer {
     padding: $spacing-xs !important;
     margin: 0 auto !important;
     max-width: 100% !important;
+    z-index: 3;
 
     .row {
       margin: 0 !important;
@@ -1164,6 +1181,7 @@ footer {
         border-radius: 25px !important;
         position: relative !important;
         overflow: visible !important;
+        z-index: 4;
 
         h3 {
           font-size: 1.6rem !important;
@@ -1253,6 +1271,7 @@ footer {
   // Ajuste navbar
   .navbar {
     padding: $spacing-xs 0;
+    z-index: 1000;
 
     #nav-brand {
       font-size: 1.1rem;
@@ -1269,6 +1288,7 @@ footer {
   header,
   .page-header {
     min-height: 35vh;
+    z-index: 2;
 
     img {
       max-width: 200px;
@@ -1282,6 +1302,7 @@ footer {
 
   .container.text-center {
     padding: $spacing-xs !important;
+    z-index: 3;
 
     .row {
       @include horizontal-row-layout;
@@ -1303,10 +1324,11 @@ footer {
         background: rgba(255, 255, 255, 0.08) !important;
         backdrop-filter: blur(10px) !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 15px !important; // Más pequeño
+        border-radius: 15px !important;
+        z-index: 4;
 
         h3 {
-          font-size: 1rem !important; // Más pequeño para que quepa
+          font-size: 1rem !important;
           text-align: center !important;
           margin-bottom: $spacing-sm !important;
           line-height: 1.2 !important;
@@ -1315,7 +1337,7 @@ footer {
         }
 
         p {
-          font-size: 0.75rem !important; // Más pequeño
+          font-size: 0.75rem !important;
           text-align: center !important;
           margin-bottom: $spacing-sm !important;
           line-height: 1.4 !important;
@@ -1331,10 +1353,10 @@ footer {
           padding: 0 $spacing-xs !important;
 
           li {
-            font-size: 0.7rem !important; // Más pequeño
+            font-size: 0.7rem !important;
             margin-bottom: $spacing-xs !important;
             line-height: 1.3 !important;
-            padding-left: 20px !important; // Menos espacio
+            padding-left: 20px !important;
             word-wrap: break-word !important;
             hyphens: auto !important;
 
